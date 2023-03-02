@@ -1,3 +1,5 @@
+ARG TARGETARCH
+
 FROM --platform=linux/amd64 rust:1-bullseye as builder-arm64
 
 RUN apt update && apt upgrade -y
@@ -36,4 +38,8 @@ RUN apt-get update && apt-get install -y ca-certificates && rm -rf /var/lib/apt/
 
 COPY --from=builder /oura /usr/local/bin/oura
 
-ENTRYPOINT [ "oura" ]
+## Add the wait script to the image
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.9.0/wait /wait
+RUN chmod +x /wait
+
+# ENTRYPOINT [ "oura" ]
