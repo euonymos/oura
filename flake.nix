@@ -18,9 +18,6 @@
     utils.lib.eachSystem supportedSystems
     (
       system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-        in
         {
           packages.oura = crane.lib.${system}.buildPackage {
             src = self;
