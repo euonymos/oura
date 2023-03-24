@@ -24,7 +24,7 @@
         {
           packages.oura = crane.lib.${system}.buildPackage {
             src = self;
-            cargoExtraArgs = "--all-features";
+            cargoExtraArgs = "--features kafkasink";
             nativeBuildInputs = with import nixpkgs { inherit system; }; [ perl ];
           };
           packages.default = self.packages.${system}.oura;
