@@ -1,5 +1,3 @@
-ARG TARGETARCH
-
 FROM --platform=linux/amd64 rust:1-bullseye as builder-arm64
 
 RUN apt update && apt upgrade -y
