@@ -32,9 +32,9 @@ impl SinkProvider for WithUtils<Config> {
             for _ in 1..10 {
                 let mut builder = Producer::from_hosts(self.inner.brokers.clone());
 
-                if let Some(timeout) = &self.inner.ack_timeout_secs {
+                if let Some(timeout) = self.inner.ack_timeout_secs {
                     builder = builder
-                        .with_ack_timeout(Duration::from_secs(*timeout))
+                        .with_ack_timeout(Duration::from_secs(timeout))
                         .with_required_acks(RequiredAcks::One)
                 };
 
